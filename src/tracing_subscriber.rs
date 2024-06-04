@@ -10,7 +10,7 @@ use std::{
 
 use tracing::span;
 
-use crate::ffi::{SCS_LOG_TYPE_ERROR, SCS_LOG_TYPE_MESSAGE, SCS_LOG_TYPE_WARNING};
+use crate::{SCS_LOG_TYPE_error, SCS_LOG_TYPE_message, SCS_LOG_TYPE_warning};
 
 struct StringVisitor {
     value: String,
@@ -41,12 +41,12 @@ impl tracing::field::Visit for StringVisitor {
 
 pub struct ETS2TracingSubscriber {
     file_log: Mutex<File>,
-    game_log: extern "stdcall" fn(i32, *const c_char),
+    game_log: unsafe extern "C" fn(i32, *const c_char),
     ids: AtomicUsize,
 }
 
 impl ETS2TracingSubscriber {
-    pub fn new(game_log: extern "stdcall" fn(i32, *const c_char)) -> Self {
+    pub fn new(game_log: unsafe extern "C" fn(i32, *const c_char)) -> Self {
         Self {
             file_log: Mutex::new(File::create("pigeon.truckers.log").unwrap()),
             game_log,
@@ -83,12 +83,12 @@ impl tracing::Subscriber for ETS2TracingSubscriber {
 
         let msg = CString::new(msg).unwrap();
         let log_type = match *event.metadata().level() {
-            tracing::Level::ERROR => SCS_LOG_TYPE_ERROR,
-            tracing::Level::WARN => SCS_LOG_TYPE_WARNING,
-            _ => SCS_LOG_TYPE_MESSAGE,
+            tracing::Level::ERROR => SCS_LOG_TYPE_error,
+            tracing::Level::WARN => SCS_LOG_TYPE_warning,
+            _ => SCS_LOG_TYPE_message,
         };
         writeln!(self.file_log.lock().unwrap(), "{}", msg.to_string_lossy()).unwrap();
-        (self.game_log)(log_type, msg.as_ptr());
+        unsafe { (self.game_log)(log_type, msg.as_ptr()) };
     }
 
     fn enter(&self, _span: &span::Id) {}
