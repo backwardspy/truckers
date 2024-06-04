@@ -13,7 +13,7 @@ for updating on the fly, you can use the in-game console to unload & reload the 
 
 ## features
 
-![nothing](https://media1.tenor.com/m/XQLVLptLIBEAAAAd/maes-b-lost-in-a-field.gif)
+![nothing](https://github.com/backwardspy/truckers/assets/289746/7b505a37-8a33-4bff-9481-8540b0d627b7)
 
 ## roadmap
 
