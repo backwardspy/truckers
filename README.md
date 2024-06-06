@@ -23,7 +23,8 @@ for updating on the fly, you can use the in-game console to unload & reload the 
 
 - [x] tracing subscriber for ingame console
 - [x] finish translating the telemetry functions of the C SDK to rust (bindgen)
-- [ ] build a high-level safe API on top of the telemetry functions
+- [x] build a high-level safe API on top of the telemetry event functions
+- [ ] build a high-level safe API on top of the telemetry channel functions
 - [x] translate the input functions of the C SDK to rust (bindgen)
 - [ ] build a high-level safe API on top of the input functions
 - [ ] expose telemetry _somehow_
