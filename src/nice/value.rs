@@ -1,20 +1,20 @@
 use truckers_scssdk_sys::*;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Vec3<T> {
     pub x: T,
     pub y: T,
     pub z: T,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Euler {
     pub heading: f32,
     pub pitch: f32,
     pub roll: f32,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum Value {
     Bool(bool),
     I32(i32),
@@ -31,7 +31,7 @@ pub enum Value {
     String(String),
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct NamedValue {
     pub name: String,
     pub value: Value,
