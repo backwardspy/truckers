@@ -15,10 +15,19 @@ for updating on the fly, you can use the in-game console to unload & reload the 
 
 ![nothing](https://github.com/backwardspy/truckers/assets/289746/7b505a37-8a33-4bff-9481-8540b0d627b7)
 
+## safety
+
+![nothing](https://github.com/backwardspy/truckers/assets/289746/7b505a37-8a33-4bff-9481-8540b0d627b7)
+
 ## roadmap
 
 - [x] tracing subscriber for ingame console
-- [ ] finish translating the telemetry functions of the C SDK to rust
+- [x] finish translating the telemetry functions of the C SDK to rust (bindgen)
 - [ ] build a high-level safe API on top of the telemetry functions
-- [ ] translate the input functions of the C SDK to rust
+- [x] translate the input functions of the C SDK to rust (bindgen)
 - [ ] build a high-level safe API on top of the input functions
+- [ ] expose telemetry _somehow_
+  - metrics
+  - action items
+  - learnings
+  - _takeaways_
